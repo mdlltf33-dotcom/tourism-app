@@ -10,7 +10,8 @@ class AuthController {
 
   final String baseUrl = "http://192.168.1.104:5000/api/auth";
 
-  // ✅ تسجيل الدخول
+
+  // ✅ تسجيل الدخول 
   Future<bool> login(String email, String password) async {
     final url = Uri.parse("$baseUrl/login");
     final res = await http.post(
