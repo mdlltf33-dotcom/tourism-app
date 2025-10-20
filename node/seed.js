@@ -1,26 +1,29 @@
-// scripts/seed.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Hotel from "./models/hotelModel.js";
-import Restaurant from "./models/restaurantModel.js";
 import Place from "./models/placeModel.js";
+import Restaurant from "./models/restaurantModel.js";
 import Transport from "./models/transportModel.js";
 
 dotenv.config();
 await mongoose.connect(process.env.MONGO_URI);
 
-// 🏨 الفنادق
-await Hotel.deleteMany();
-await Hotel.insertMany([
+// 🧹 حذف البيانات القديمة
+await Place.deleteMany();
+await Restaurant.deleteMany();
+await Transport.deleteMany();
+
+// 🏨 إدخال الفنادق داخل Place مع category: "hotel"
+await Place.insertMany([
   {
     id: "h1",
     name: "فندق الشام",
-    description: "فندق فاخر وسط دمشق، يتميز بغرفه الأنيقة وخدماته الراقية...",
+    description: "فندق فاخر وسط دمشق، يتميز بغرفه وخدماته الراقية...",
     images: ["assets/images/hotels/hotels1.WebP"],
     location: "دمشق",
     rating: 4.5,
     pricePerNight: 100,
     phoneNumber: "+963944123456",
+    category: "hotel"
   },
   {
     id: "h2",
@@ -31,12 +34,12 @@ await Hotel.insertMany([
     rating: 4.3,
     pricePerNight: 120,
     phoneNumber: "+963993654321",
+    category: "hotel"
   },
-  // أكمل باقي الفنادق بنفس النمط...
+  // أضف المزيد حسب الحاجة...
 ]);
 
 // 🍽️ المطاعم
-await Restaurant.deleteMany();
 await Restaurant.insertMany([
   {
     id: "r1",
@@ -46,7 +49,7 @@ await Restaurant.insertMany([
     location: "دمشق",
     rating: 4.6,
     cuisineType: "شرقي",
-    phoneNumber: "+963946112358",
+    phoneNumber: "+963946112358"
   },
   {
     id: "r2",
@@ -56,13 +59,12 @@ await Restaurant.insertMany([
     location: "اللاذقية",
     rating: 4.5,
     cuisineType: "بحري",
-    phoneNumber: "+963942223344",
+    phoneNumber: "+963942223344"
   },
-  // أكمل باقي المطاعم بنفس النمط...
+  // أضف المزيد حسب الحاجة...
 ]);
 
-// 🏞️ الأماكن السياحية
-await Place.deleteMany();
+// 🏞️ الأماكن السياحية داخل Place مع category: "attraction"
 await Place.insertMany([
   {
     id: "p1",
@@ -71,7 +73,7 @@ await Place.insertMany([
     images: ["assets/images/attractions/attractions1.WebP", "assets/images/attractions/attractions2.WebP"],
     location: "حلب",
     rating: 4.8,
-    category: "attraction",
+    category: "attraction"
   },
   {
     id: "p2",
@@ -80,13 +82,12 @@ await Place.insertMany([
     images: ["assets/images/attractions/attractions2.WebP"],
     location: "دمشق",
     rating: 4.9,
-    category: "attraction",
+    category: "attraction"
   },
-  // أكمل باقي الأماكن بنفس النمط...
+  // أضف المزيد حسب الحاجة...
 ]);
 
 // 🚗 وسائل النقل
-await Transport.deleteMany();
 await Transport.insertMany([
   {
     id: "t4",
@@ -96,7 +97,7 @@ await Transport.insertMany([
     location: "طرطوس",
     rating: 4.5,
     type: "فاخر",
-    fare: 50.0,
+    fare: 50.0
   },
   {
     id: "t5",
@@ -106,9 +107,9 @@ await Transport.insertMany([
     location: "حمص",
     rating: 4.3,
     type: "ميني فان",
-    fare: 35.0,
+    fare: 35.0
   },
-  // أكمل باقي وسائل النقل بنفس النمط...
+  // أضف المزيد حسب الحاجة...
 ]);
 
 console.log("✅ تم إدخال جميع البيانات بنجاح");
