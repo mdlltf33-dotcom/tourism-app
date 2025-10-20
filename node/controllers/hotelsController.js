@@ -1,4 +1,5 @@
-import Place from "../models/placeModel.js";
+// controllers/hotelsController.js
+import Hotel from "../models/hotelModel.js";
 
 /**
  * Controller for hotels (CRUD)
@@ -6,7 +7,7 @@ import Place from "../models/placeModel.js";
 
 export const getHotels = async (req, res) => {
   try {
-    const hotels = await Place.find({ category: "hotel" }).sort({ createdAt: -1 });
+    const hotels = await Hotel.find().sort({ createdAt: -1 });
     res.json(hotels);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -15,7 +16,7 @@ export const getHotels = async (req, res) => {
 
 export const getHotelById = async (req, res) => {
   try {
-    const hotel = await Place.findOne({ _id: req.params.id, category: "hotel" });
+    const hotel = await Hotel.findById(req.params.id);
     if (!hotel) return res.status(404).json({ message: "Hotel not found" });
     res.json(hotel);
   } catch (err) {
@@ -25,8 +26,7 @@ export const getHotelById = async (req, res) => {
 
 export const createHotel = async (req, res) => {
   try {
-    const payload = { ...req.body, category: "hotel" };
-    const hotel = await Place.create(payload);
+    const hotel = await Hotel.create(req.body);
     res.status(201).json(hotel);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -35,11 +35,7 @@ export const createHotel = async (req, res) => {
 
 export const updateHotel = async (req, res) => {
   try {
-    const updated = await Place.findOneAndUpdate(
-      { _id: req.params.id, category: "hotel" },
-      req.body,
-      { new: true }
-    );
+    const updated = await Hotel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updated) return res.status(404).json({ message: "Hotel not found" });
     res.json(updated);
   } catch (err) {
@@ -49,7 +45,7 @@ export const updateHotel = async (req, res) => {
 
 export const deleteHotel = async (req, res) => {
   try {
-    const deleted = await Place.findOneAndDelete({ _id: req.params.id, category: "hotel" });
+    const deleted = await Hotel.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({ message: "Hotel not found" });
     res.json({ message: "Hotel deleted" });
   } catch (err) {
