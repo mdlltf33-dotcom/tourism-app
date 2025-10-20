@@ -6,7 +6,7 @@ import '../widgets/main_drawer.dart';
 import '../providers/comments_provider.dart';
 import '../controllers/favorites_controller.dart';
 
-enum DetailType { hotel, restaurant, attraction }
+enum DetailType { hotel, restaurant, attraction, transport }
 
 class DetailArguments {
   final String id;

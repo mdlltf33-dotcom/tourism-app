@@ -2,7 +2,7 @@ import 'place_model.dart';
 
 class RestaurantModel extends PlaceModel {
   final String cuisineType;
-  final String? phoneNumber; // ← حقل اختياري
+  final String? phoneNumber;
 
   RestaurantModel({
     required super.id,
@@ -12,6 +12,19 @@ class RestaurantModel extends PlaceModel {
     required super.location,
     required super.rating,
     required this.cuisineType,
-    required this.phoneNumber, // ← بدون required
+    required this.phoneNumber,
   });
+
+  factory RestaurantModel.fromJson(Map<String, dynamic> json) {
+    return RestaurantModel(
+      id: json['_id'] ?? json['id'],
+      name: json['name'] ?? '',
+      description: json['description'] ?? '',
+      images: List<String>.from(json['images'] ?? []),
+      location: json['location'] ?? '',
+      rating: (json['rating'] ?? 0).toDouble(),
+      cuisineType: json['cuisineType'] ?? '',
+      phoneNumber: json['phoneNumber'],
+    );
+  }
 }

@@ -1,17 +1,16 @@
-
-// models/transportModel.js
 import mongoose from "mongoose";
 
 const transportSchema = new mongoose.Schema(
   {
+    id: { type: String, required: true },
     name: { type: String, required: true },
     location: { type: String },
-    image: { type: String },
+    images: [{ type: String }], // ✅ مصفوفة صور
     rating: { type: Number, default: 0 },
     description: { type: String },
-    type: { type: String }, // تاكسي، باص، تأجير، ...
-    fare: { type: Number, default: 0 }, // سعر/تعرفة تقريبية
-    // يمكنك إضافة phone, schedule
+    type: { type: String },
+    fare: { type: Number, default: 0 },
+    phoneNumber: { type: String }, // اختياري
   },
   { timestamps: true }
 );
