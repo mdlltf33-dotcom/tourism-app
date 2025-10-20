@@ -70,7 +70,7 @@ class _MainDrawerState extends State<MainDrawer> {
                 return;
               }
 
-              final url = Uri.parse("http://192.168.1.104:5000/api/auth/update-name");
+              final url = Uri.parse("https://tourism-app-1-fs9e.onrender.com/api/auth/update-name");
               final res = await http.put(
                 url,
                 headers: {

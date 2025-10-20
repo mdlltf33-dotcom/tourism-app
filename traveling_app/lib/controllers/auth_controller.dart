@@ -8,7 +8,7 @@ class AuthController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  final String baseUrl = "http://192.168.1.104:5000/api/auth";
+  final String baseUrl = "https://tourism-app-1-fs9e.onrender.com/api/auth";
 
 
   // ✅ تسجيل الدخول  gamil

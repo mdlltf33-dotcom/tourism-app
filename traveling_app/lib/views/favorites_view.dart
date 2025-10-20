@@ -59,7 +59,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   }
 
   Future<List<HotelModel>> fetchHotels() async {
-    final res = await http.get(Uri.parse('http://192.168.1.104:5000/api/hotels'));
+    final res = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/hotels'));
     if (res.statusCode == 200) {
       final data = json.decode(res.body);
       return data.map<HotelModel>((e) => HotelModel.fromJson(e)).toList();
@@ -68,7 +68,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   }
 
   Future<List<RestaurantModel>> fetchRestaurants() async {
-    final res = await http.get(Uri.parse('http://192.168.1.104:5000/api/restaurants'));
+    final res = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/restaurants'));
     if (res.statusCode == 200) {
       final data = json.decode(res.body);
       return data.map<RestaurantModel>((e) => RestaurantModel.fromJson(e)).toList();
@@ -77,7 +77,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   }
 
   Future<List<PlaceModel>> fetchAttractions() async {
-    final res = await http.get(Uri.parse('http://192.168.1.104:5000/api/places?category=attraction'));
+    final res = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/places?category=attraction'));
     if (res.statusCode == 200) {
       final data = json.decode(res.body);
       return data.map<PlaceModel>((e) => PlaceModel.fromJson(e)).toList();
@@ -86,7 +86,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   }
 
   Future<List<TransportModel>> fetchTransports() async {
-    final res = await http.get(Uri.parse('http://192.168.1.104:5000/api/transport'));
+    final res = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/transport'));
     if (res.statusCode == 200) {
       final data = json.decode(res.body);
       return data.map<TransportModel>((e) => TransportModel.fromJson(e)).toList();

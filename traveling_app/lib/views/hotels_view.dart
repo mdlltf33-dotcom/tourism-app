@@ -36,7 +36,7 @@ class _HotelsViewState extends State<HotelsView> {
   }
 
   Future<List<HotelModel>> fetchHotels() async {
-    final response = await http.get(Uri.parse('http://192.168.1.104:5000/api/hotels'));
+    final response = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/hotels'));
     if (response.statusCode == 200) {
       final List data = json.decode(response.body);
       return data.map((e) => HotelModel.fromJson(e)).toList();

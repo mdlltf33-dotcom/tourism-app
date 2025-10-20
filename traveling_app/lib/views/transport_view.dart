@@ -36,7 +36,7 @@ class _TransportViewState extends State<TransportView> {
   }
 
   Future<List<TransportModel>> fetchTransports() async {
-    final response = await http.get(Uri.parse('http://192.168.1.104:5000/api/transport'));
+    final response = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/transport'));
     if (response.statusCode == 200) {
       final List data = json.decode(response.body);
       return data.map((e) => TransportModel.fromJson(e)).toList();

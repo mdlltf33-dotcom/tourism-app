@@ -36,7 +36,7 @@ class _RestaurantsViewState extends State<RestaurantsView> {
   }
 
   Future<List<RestaurantModel>> fetchRestaurants() async {
-    final response = await http.get(Uri.parse('http://192.168.1.104:5000/api/restaurants'));
+    final response = await http.get(Uri.parse('https://tourism-app-1-fs9e.onrender.com/api/restaurants'));
     if (response.statusCode == 200) {
       final List data = json.decode(response.body);
       return data.map((e) => RestaurantModel.fromJson(e)).toList();
